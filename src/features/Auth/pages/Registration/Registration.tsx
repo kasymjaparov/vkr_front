@@ -2,7 +2,7 @@ import { InputAdornment, TextField, Button, IconButton } from "@mui/material"
 import React from "react"
 import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
-import useLogin from "./useLogin"
+import useRegistration from "./useRegistration"
 
 const Registartion = () => {
   const {
@@ -13,12 +13,12 @@ const Registartion = () => {
     showPassword,
     handleClickShowPassword,
     handleMouseDownPassword,
-  } = useLogin()
+  } = useRegistration()
   return (
     <form className="login">
       <div className="login__block">
         <div className="login__block__form">
-          <h1 className="login__block__form_title">Вход</h1>
+          <h1 className="login__block__form_title">Регистрация</h1>
           <TextField
             value={data.email}
             onKeyUp={(e: React.KeyboardEvent<HTMLElement>) =>

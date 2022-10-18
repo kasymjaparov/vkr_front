@@ -1,0 +1,131 @@
+.adminDashboard__links__item,
+.adminDashboard__links__item:visited,
+.adminDashboard__links__item:link {
+  color: black;
+  text-decoration: none;
+}
+.adminDashboard__links__item-btn:hover .adminDashboard__links__item-btn__text,
+.adminDashboard__links__item-btn:hover .adminDashboard__links__item-btn__icon {
+  color: white;
+}
+.adminDashboard__links__item-active .adminDashboard__links__item-btn {
+  background: linear-gradient(to right, #4a32d4 0%, #2575fc 100%);
+}
+.adminDashboard__links__item-active .adminDashboard__links__item-btn__text,
+.adminDashboard__links__item-active .adminDashboard__links__item-btn__icon {
+  color: #fff;
+}
+.myAppBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.myAppBar__logo {
+  width: 160px;
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+}
+
+.myAppBar__links {
+  color: black;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.myAppBar__links__profile {
+  color: #031938;
+  font-size: 14px;
+  font-weight: 500 important!;
+  position: relative;
+}
+.myAppBar__links__profile h4 {
+  cursor: pointer;
+}
+.myAppBar__links__profile__tooltip {
+  position: absolute;
+  top: 45px;
+  right: -5px;
+  padding-top: 5px;
+  width: 250px;
+  background: #fff;
+  box-shadow: 0 0 0 0 rgb(111 134 230 / 73%),
+    0 4px 16px 0 rgb(179 187 195 / 77%);
+  border: solid 1px #dae0e6;
+}
+.myAppBar__links__profile__tooltip::after {
+  content: "";
+  position: absolute;
+  top: -8.5px;
+  right: 16px;
+  border-bottom: 9px solid #fff;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+}
+.myAppBar__links__profile__tooltip:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 18px;
+  border-bottom: 10px solid rgba(67, 87, 133, 0.2);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.myAppBar__links__profile__tooltip__header {
+  border-bottom: 1px solid rgba(67, 87, 133, 0.2);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.myAppBar__links__profile__tooltip__body__links__item {
+  display: flex;
+  align-items: center;
+  padding: 12px 10px;
+  cursor: pointer;
+}
+.myAppBar__links__profile__tooltip__body__links__item:hover {
+  color: #4a32d4;
+  text-decoration: none;
+  background-color: #eff1f5;
+}
+.myAppBar__links__profile__tooltip__body__links__item__icon {
+  color: #4a32d4;
+  margin: 0px 8px;
+}
+.myAppBar__links__fullscreen {
+  margin: 20px 0px 0px 0px;
+  cursor: pointer;
+}
+.active {
+  background-color: "red";
+}
+.myAppBar__burger {
+  color: black;
+  width: 25px;
+  height: 25px;
+  margin: 0px 0px 0px 45px;
+  cursor: pointer;
+}
+.adminDashboard__links__item-btn__text-active,
+.adminDashboard__links__item-btn__text-active span {
+  font-weight: bold;
+}
+@media (max-width: 960px) {
+  .admindashboard__links__item-btn__text,
+  .adminDashboard__links__item-btn__text-active {
+    font-size: 14px;
+  }
+  .myAppBar__logo {
+    width: 150px;
+  }
+  .myAppBar__burger {
+    margin: 0px 0px 0px 20px;
+    width: 22px;
+    height: 22px;
+  }
+  .myAppBar__links__profile__tooltip {
+    width: 200px;
+  }
+}

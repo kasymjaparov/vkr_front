@@ -3,15 +3,6 @@ import { AxiosRequestHeaders } from "axios"
 import { SvgIconTypeMap } from "@mui/material"
 import { OverridableComponent } from "@mui/material/OverridableComponent"
 import { Roles, StatusResponse } from "./enums"
-
-export interface IList<T> {
-    data: T[],
-    message?: string,
-    amount: number,
-    limit: number,
-    pagesCount: number,
-    status: StatusResponse
-}
 export interface IGetById<T> {
     data: T,
     message?: string,
@@ -20,13 +11,6 @@ export interface IGetById<T> {
 export interface IEdit {
     message?: string,
     status: StatusResponse
-}
-
-export interface IPayloadList<T> {
-    data: T[],
-    amount: number,
-    limit: number,
-    pagesCount: number
 }
 
 export interface ICommonForm {
@@ -38,14 +22,6 @@ export interface ICommonForm {
     errorMessage?: string
     value?: string | number
     placeholder?: string
-}
-export interface IListTable<T> {
-    count: number,
-    page_size: number,
-    num_pages: number,
-    next: string,
-    previous: null,
-    results: T[]
 }
 
 export interface IHeaders { headers: AxiosRequestHeaders }
@@ -62,6 +38,6 @@ export interface IAppBarLink {
         muiName: string;
     }
 }
-export interface IActive {
-    is_active: boolean
+export interface MessageResponse {
+    message: string
 }
