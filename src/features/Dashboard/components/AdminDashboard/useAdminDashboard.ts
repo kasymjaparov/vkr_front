@@ -24,10 +24,13 @@ export const useAdminDashboard = () => {
     if (indexOfValidLink < 0) return
     setActiveLink(appBarLinks[indexOfValidLink].href)
   }, [])
-
   const logoutBtn = async () => {
     await dispatch(logout())
     navigate("/auth/login/")
+  }
+  const openEditProfile = async () => {
+    navigate("/editProfile")
+    setOpenTooltip(false)
   }
   const handleChangeActiveLink = (link: string) => {
     setActiveLink(link)
@@ -36,5 +39,5 @@ export const useAdminDashboard = () => {
   const isValidRole = (validedRoles: Roles[]): boolean => {
     return validedRoles.includes(userRole)
   }
-  return { open, getProfileStatus, token, isValidRole, activeLink, handleChangeActiveLink, logoutBtn, getProfileInfo, isLoading, openTooltip, setOpen, setOpenTooltip }
+  return { open, getProfileStatus, token, openEditProfile, isValidRole, activeLink, handleChangeActiveLink, logoutBtn, getProfileInfo, isLoading, openTooltip, setOpen, setOpenTooltip }
 }

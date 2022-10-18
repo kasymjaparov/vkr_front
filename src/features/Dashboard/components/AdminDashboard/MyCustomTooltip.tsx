@@ -4,7 +4,7 @@ interface ITooltipProp {
   name: string
 }
 export const MyCustomTooltip: React.FC<ITooltipProp> = ({ name }) => {
-  const { logoutBtn } = useAdminDashboard()
+  const { logoutBtn, openEditProfile } = useAdminDashboard()
   return (
     <div className="myAppBar__links__profile__tooltip">
       <div className="myAppBar__links__profile__tooltip__header">
@@ -12,12 +12,15 @@ export const MyCustomTooltip: React.FC<ITooltipProp> = ({ name }) => {
       </div>
       <div className="myAppBar__links__profile__tooltip__body">
         <div className="myAppBar__links__profile__tooltip__body__links">
-          {/* <div className="myAppBar__links__profile__tooltip__body__links__item">
+          <div
+            onClick={openEditProfile}
+            className="myAppBar__links__profile__tooltip__body__links__item"
+          >
             <div className="myAppBar__links__profile__tooltip__body__links__item__icon fa-solid fa-outdent" />
             <div className="myAppBar__links__profile__tooltip__body__links__item__text">
-              Изменить пароль
+              Изменить данные
             </div>
-          </div> */}
+          </div>
           <div
             onClick={logoutBtn}
             className="myAppBar__links__profile__tooltip__body__links__item"

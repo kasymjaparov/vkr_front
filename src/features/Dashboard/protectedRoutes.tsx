@@ -1,7 +1,10 @@
 import RequiredAuth from "@/shared/components/wrappers/RequiredAuth"
 import { Roles } from "@/shared/enums"
 import { IRoute } from "@/shared/types"
-import { Outlet } from "react-router"
+import CreateOrderRoute from "@features/CreateOrder/route"
+import EditProfileRoute from "@features/EditProfile/route"
+
+import Distributor from "./components/Distributor"
 
 const protectedRoutes: IRoute[] = [
   {
@@ -16,23 +19,11 @@ const protectedRoutes: IRoute[] = [
           Roles.SUPERADMIN,
         ]}
       >
-        <Outlet />
+        <Distributor />
       </RequiredAuth>
     ),
   },
-  {
-    path: "createOrder",
-    element: (
-      <RequiredAuth roles={[Roles.CLIENT]}>
-        <Outlet />
-      </RequiredAuth>
-    ),
-    children: [
-      {
-        path: "",
-        element: <>create order</>,
-      },
-    ],
-  },
+  CreateOrderRoute,
+  EditProfileRoute,
 ]
 export default protectedRoutes
