@@ -11,13 +11,13 @@ const useEditProfile = () => {
     const validationSchema = yup.object().shape({
         name: yup.string().required("Обязательное поле"),
         surname: yup.string().required("Обязательное поле"),
-        phone: yup.mixed().required("Обязательное поле"),
+        phone: yup.string().required("Обязательное поле").matches(/^\+996(\d{9})$/, 'Заполните по форме +996xxxxxx '),
     })
     const initialValues: EditProfileReq = {
         name: user.name || "",
         surname: user.surname || "",
         patronymic: user.patronymic || "",
-        phone: user.phone || "",
+        phone: user.phone || "+996",
         sign: user.signature ? false : true
     }
     const onSubmit = (editData: EditProfileReq) => {

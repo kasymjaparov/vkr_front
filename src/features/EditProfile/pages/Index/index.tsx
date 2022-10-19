@@ -98,7 +98,6 @@ const EditProfile = () => {
                 ) : (
                   <span>Ваша подпись присутствует</span>
                 )}
-
                 <Button
                   variant="contained"
                   type="button"

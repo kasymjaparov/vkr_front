@@ -32,7 +32,7 @@ const AppBarLink = ({
     <NavLink
       onClick={handleClick}
       className={({ isActive }) =>
-        (isActive && link.icon) || (link.icon && activeLink === link.href)
+        isActive || activeLink === link.href
           ? "adminDashboard__links__item-active"
           : "adminDashboard__links__item"
       }
@@ -67,12 +67,10 @@ const AppBarLink = ({
               justifyContent: "center",
             }}
           >
-            {link.icon ? (
-              <link.icon
-                sx={{ fontSize: "22px" }}
-                className="adminDashboard__links__item-btn__icon"
-              />
-            ) : null}
+            <link.icon
+              sx={{ fontSize: "22px" }}
+              className="adminDashboard__links__item-btn__icon"
+            />
           </ListItemIcon>
           <ListItemText
             sx={{
@@ -90,11 +88,7 @@ const AppBarLink = ({
                   }
                 : {},
             }}
-            className={
-              link.icon
-                ? "adminDashboard__links__item-btn__text"
-                : "adminDashboard__links__item-btn__text-active"
-            }
+            className={"adminDashboard__links__item-btn__text"}
           >
             {link.text}
           </ListItemText>
