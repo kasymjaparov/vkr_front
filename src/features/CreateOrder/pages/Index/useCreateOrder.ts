@@ -29,13 +29,11 @@ const useCreateOrder = () => {
     }
     const onSubmit = (createData: CreateOrderReq) => {
         const formData = new FormData()
-        console.log(createData)
         formData.append("address", createData.address)
         formData.append("series", createData.series)
         formData.append("amount_room", createData.amount_room)
         formData.append("images", createData.images)
         formData.append("rooms", JSON.stringify(createData.rooms))
-        console.log(formData.get("images"))
         dispatch(createOrder(formData))
     }
 

@@ -143,22 +143,11 @@ const CreateOrder = () => {
                     {({ push, remove }) => {
                       return (
                         <div className="rooms_subform">
+                          <Typography sx={{ marginBottom: "10px" }}>
+                            Комнаты
+                          </Typography>
                           {values.rooms.map((_: any, index: number) => (
-                            <div key={index}>
-                              <Typography sx={{ marginY: "10px" }}>
-                                {index > 0 ? "Доп комнаты" : "Комнаты"}
-                              </Typography>
-                              {index > 0 && (
-                                <Button
-                                  color="error"
-                                  size="small"
-                                  variant="contained"
-                                  sx={{ marginBottom: "10px" }}
-                                  onClick={() => remove(index)}
-                                >
-                                  Удалить эту комнату
-                                </Button>
-                              )}
+                            <div style={{ marginBottom: "20px" }} key={index}>
                               <Stack spacing={2}>
                                 <Field
                                   size="small"
@@ -175,8 +164,20 @@ const CreateOrder = () => {
                                   name={`rooms[${index}].description`}
                                 />
                               </Stack>
+                              {index > 0 && (
+                                <Button
+                                  color="error"
+                                  size="small"
+                                  variant="contained"
+                                  sx={{ marginTop: "10px" }}
+                                  onClick={() => remove(index)}
+                                >
+                                  Удалить эту комнату
+                                </Button>
+                              )}
                             </div>
                           ))}
+
                           <Button
                             variant="contained"
                             size="small"
