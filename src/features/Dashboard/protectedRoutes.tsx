@@ -3,7 +3,7 @@ import { Roles } from "@/shared/enums"
 import { IRoute } from "@/shared/types"
 import CreateOrderRoute from "@features/CreateOrder/route"
 import EditProfileRoute from "@features/EditProfile/route"
-
+import MyOrders from "@features/MyOrders/route"
 import Distributor from "./components/Distributor"
 
 const protectedRoutes: IRoute[] = [
@@ -25,5 +25,6 @@ const protectedRoutes: IRoute[] = [
   },
   CreateOrderRoute,
   EditProfileRoute,
+  MyOrders,
 ]
 export default protectedRoutes

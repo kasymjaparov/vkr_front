@@ -10,7 +10,7 @@ const Distributor = () => {
   const { role: userType } = user
   React.useEffect(() => {
     if (userType === Roles.CLIENT) {
-      navigate("/createOrder")
+      navigate("/myOrders")
     }
     // else if (userType === Roles.SuperAdmin || userType === Roles.Admin) {
     //   navigate("/front/all_Loans/1")

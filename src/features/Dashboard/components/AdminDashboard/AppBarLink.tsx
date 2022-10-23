@@ -32,7 +32,7 @@ const AppBarLink = ({
     <NavLink
       onClick={handleClick}
       className={({ isActive }) =>
-        isActive || activeLink === link.href
+        isActive
           ? "adminDashboard__links__item-active"
           : "adminDashboard__links__item"
       }

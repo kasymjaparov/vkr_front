@@ -1,13 +1,15 @@
 import authSlice from "@/features/Auth/store/slice";
 import createOrderSlice from "@/features/CreateOrder/store/slice";
 import editProfileSlice from "@/features/EditProfile/store/slice";
+import MyOrdersSlice from "@/features/MyOrders/store/slice";
 import { AnyAction, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
 
 const reducers = {
     auth: authSlice,
     editProfile: editProfileSlice,
-    createOrder: createOrderSlice
+    createOrder: createOrderSlice,
+    myOrders: MyOrdersSlice
 }
 
 const combinedReducer = combineReducers(reducers);
