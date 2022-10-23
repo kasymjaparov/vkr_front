@@ -59,7 +59,7 @@ const BannerRow: React.FC<IRow> = ({ row }) => {
             iconClassName="fa-solid fa-pencil"
           />
         </NavLink>
-        <NavLink to={`/front/info/${row.id}`}>
+        <NavLink to={`${row.id}`}>
           <TableButton
             styles={{
               marginRight: "10px",

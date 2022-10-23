@@ -1,6 +1,7 @@
 import RequiredAuth from "@/shared/components/wrappers/RequiredAuth"
 import { Roles } from "@/shared/enums"
 import { Outlet } from "react-router"
+import Detail from "./pages/Detail/Detail"
 import Index from "./pages/Index"
 
 const Route = {
@@ -14,6 +15,10 @@ const Route = {
     {
       path: "",
       element: <Index />,
+    },
+    {
+      path: ":id",
+      element: <Detail />,
     },
   ],
 }

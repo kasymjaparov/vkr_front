@@ -1,15 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { getMyOrders } from "./actions"
+import { deleteOrder, getById, getMyOrders } from "./actions"
 import { StatusResponse } from "@/shared/enums"
 import { Order } from "../type"
+import { IEdit, IGetById } from "@/shared/types"
 
 interface IState {
     status: StatusResponse,
-    list: Order[]
+    list: Order[],
+    detail: IGetById<Order>,
+    delete: IEdit
 }
-const initialState = {
+const initialState: IState = {
     status: StatusResponse.INITIAL,
-    list: [] as Order[]
+    list: [] as Order[],
+    detail: {
+        data: {} as Order,
+        status: StatusResponse.INITIAL
+    },
+    delete: {
+        status: StatusResponse.INITIAL
+    }
 }
 
 export const getMyOrdersSlice = createSlice({
@@ -27,6 +37,25 @@ export const getMyOrdersSlice = createSlice({
         },
         [getMyOrders.rejected.type]: (state, action: PayloadAction<string>) => {
             state.status = StatusResponse.ERROR
+        },
+        [getById.fulfilled.type]: (state, action: PayloadAction<Order>) => {
+            state.detail.status = StatusResponse.SUCCESS
+            state.detail.data = action.payload
+        },
+        [getById.pending.type]: state => {
+            state.detail.status = StatusResponse.LOADING
+        },
+        [getById.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.detail.status = StatusResponse.ERROR
+        },
+        [deleteOrder.fulfilled.type]: (state, action) => {
+            state.delete.status = StatusResponse.SUCCESS
+        },
+        [deleteOrder.pending.type]: state => {
+            state.delete.status = StatusResponse.LOADING
+        },
+        [deleteOrder.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.delete.status = StatusResponse.ERROR
         },
     },
 })

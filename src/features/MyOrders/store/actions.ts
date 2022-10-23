@@ -15,3 +15,28 @@ export const getMyOrders = createAsyncThunk(
     },
 )
 
+export const getById = createAsyncThunk(
+    "getMyOrders/getById",
+    async (id: string, { rejectWithValue, dispatch }) => {
+        try {
+            const { data } = await api.getById(id)
+            return data
+        } catch (e: any) {
+            toastError(e.response.data.message)
+            return rejectWithValue(e.response.data.message)
+        }
+    },
+)
+export const deleteOrder = createAsyncThunk(
+    "getMyOrders/delete",
+    async (id: string, { rejectWithValue, dispatch }) => {
+        try {
+            const { data } = await api.delete(id)
+            toastSuccess(data.message)
+            return data
+        } catch (e: any) {
+            toastError(e.response.data.message)
+            return rejectWithValue(e.response.data.message)
+        }
+    },
+)
