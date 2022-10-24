@@ -12,7 +12,8 @@ import useMyOrders from "./useMyOrders"
 import HOCList from "@/shared/components/wrappers/HOCList"
 
 const LoanIssuedList = () => {
-  const { list, isLoading, isSuccess, isError, tableHeaders } = useMyOrders()
+  const { list, isLoading, isSuccess, isError, tableHeaders, role } =
+    useMyOrders()
 
   return (
     <HOCList
@@ -47,7 +48,7 @@ const LoanIssuedList = () => {
             </TableHead>
             <TableBody>
               {list.map((row, index) => (
-                <Row key={index} row={row} />
+                <Row role={role} key={index} row={row} />
               ))}
             </TableBody>
           </Table>

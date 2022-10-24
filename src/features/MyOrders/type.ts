@@ -44,3 +44,8 @@ export interface Order {
     samples: [],
     stages: []
 }
+export interface IHandleOrderReq {
+    type: string;
+    id: string;
+    reason: string;
+}

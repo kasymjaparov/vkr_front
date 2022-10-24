@@ -15,6 +15,10 @@ export const getStatusBtn = (status: string) => {
             text: "Утвержден",
             color: "#4932d2",
         },
+        denied: {
+            text: "Отказано",
+            color: "#f50057",
+        },
     }
     return statuses[status as keyof typeof statuses]
 }

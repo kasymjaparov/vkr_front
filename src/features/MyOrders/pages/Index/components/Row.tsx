@@ -10,8 +10,9 @@ import { NavLink } from "react-router-dom"
 
 interface IRow {
   row: Order
+  role: Roles
 }
-const BannerRow: React.FC<IRow> = ({ row }) => {
+const BannerRow: React.FC<IRow> = ({ row, role }) => {
   const [user, setUser] = useState({} as IProfile)
   useEffect(() => {
     row.users.forEach(item => {
@@ -30,10 +31,10 @@ const BannerRow: React.FC<IRow> = ({ row }) => {
       }}
     >
       <TableCell>{row.id}</TableCell>
-      <TableCell>{user.email}</TableCell>
+      {role !== Roles.CLIENT ? <TableCell>{user.email}</TableCell> : null}
       <TableCell>{row.address}</TableCell>
       <TableCell>{row.amount_room}</TableCell>
-      <TableCell align="center">
+      <TableCell>
         {getStatusBtn(row.status) ? (
           <Chip
             sx={{
@@ -50,15 +51,6 @@ const BannerRow: React.FC<IRow> = ({ row }) => {
 
       <TableCell>{getFormatedDate(row.created_at)}</TableCell>
       <TableCell align="left">
-        <NavLink to={`/front/update/${row.id}`}>
-          <TableButton
-            styles={{
-              marginRight: "10px",
-              background: "#4a32d4",
-            }}
-            iconClassName="fa-solid fa-pencil"
-          />
-        </NavLink>
         <NavLink to={`${row.id}`}>
           <TableButton
             styles={{

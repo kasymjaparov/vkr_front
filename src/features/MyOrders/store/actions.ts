@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { api } from "../api"
 import { toastError, toastSuccess } from "@/shared/utils"
+import { IHandleOrderReq } from "../type"
 
 export const getMyOrders = createAsyncThunk(
     "getMyOrders/get",
@@ -14,7 +15,18 @@ export const getMyOrders = createAsyncThunk(
         }
     },
 )
-
+export const getAllOrders = createAsyncThunk(
+    "getMyOrders/getAll",
+    async (_, { rejectWithValue, dispatch }) => {
+        try {
+            const { data } = await api.getAll()
+            return data
+        } catch (e: any) {
+            toastError(e.response.data.message)
+            return rejectWithValue(e.response.data.message)
+        }
+    },
+)
 export const getById = createAsyncThunk(
     "getMyOrders/getById",
     async (id: string, { rejectWithValue, dispatch }) => {
@@ -32,6 +44,19 @@ export const deleteOrder = createAsyncThunk(
     async (id: string, { rejectWithValue, dispatch }) => {
         try {
             const { data } = await api.delete(id)
+            toastSuccess(data.message)
+            return data
+        } catch (e: any) {
+            toastError(e.response.data.message)
+            return rejectWithValue(e.response.data.message)
+        }
+    },
+)
+export const handleOrder = createAsyncThunk(
+    "getMyOrders/handleOrder",
+    async (handleOrderReq: IHandleOrderReq, { rejectWithValue }) => {
+        try {
+            const { data } = await api.handle(handleOrderReq)
             toastSuccess(data.message)
             return data
         } catch (e: any) {

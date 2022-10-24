@@ -5,6 +5,7 @@
 *@DDV 2
 *@BUILDER 3
 *@MEASURE 4
+*@PM 5
  */
 const enum Roles {
     SUPERADMIN = 1,
@@ -12,5 +13,6 @@ const enum Roles {
     DDV = 2,
     BUILDER = 3,
     MEASURE = 4,
+    PM = 5
 }
 export default Roles

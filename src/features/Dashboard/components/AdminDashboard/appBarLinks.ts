@@ -5,7 +5,7 @@ import CreateIcon from '@mui/icons-material/Create';
 
 const client = [
     { text: "Сделать заказ", href: `createOrder`, roles: [Roles.CLIENT], icon: CreateIcon },
-    { text: "Мои заказы", href: `myOrders`, roles: [Roles.CLIENT], icon: FormatListBulletedIcon },
+    { text: "Мои заказы", href: `myOrders`, roles: [Roles.CLIENT, Roles.PM], icon: FormatListBulletedIcon },
 ]
 
 const appBarLinks = [

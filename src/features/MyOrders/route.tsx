@@ -7,7 +7,7 @@ import Index from "./pages/Index"
 const Route = {
   path: "myOrders",
   element: (
-    <RequiredAuth roles={[Roles.CLIENT]}>
+    <RequiredAuth roles={[Roles.CLIENT, Roles.PM]}>
       <Outlet />
     </RequiredAuth>
   ),

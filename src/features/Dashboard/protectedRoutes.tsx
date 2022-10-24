@@ -17,6 +17,7 @@ const protectedRoutes: IRoute[] = [
           Roles.DDV,
           Roles.MEASURE,
           Roles.SUPERADMIN,
+          Roles.PM,
         ]}
       >
         <Distributor />
