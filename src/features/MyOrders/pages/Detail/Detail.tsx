@@ -1,10 +1,11 @@
-import { FileIcon, Loading } from "@/shared/components/ui"
+import { FileIcon, Loading, MySelect } from "@/shared/components/ui"
 import useDetail from "./useDetail"
 import {
   Box,
   Button,
   FormControl,
   Grid,
+  MenuItem,
   OutlinedInput,
   Paper,
   Stack,
@@ -14,6 +15,8 @@ import { ImageModal } from "@/shared/components/shared"
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile"
 import { getFormatedDate } from "@/shared/utils"
 import { Roles } from "@/shared/enums"
+import { decryptRole } from "@/shared/utils/getRole"
+import Select from "@mui/material/Select"
 
 const Detail = () => {
   const {
@@ -25,9 +28,16 @@ const Detail = () => {
     setImageModal,
     onDeleteOrder,
     role,
+    users,
     onHandleOrder,
     reason,
     handleReason,
+    personIds,
+    handleChange,
+    onAppointEmployeers,
+    employeers,
+    type,
+    handleType,
   } = useDetail()
   if (isLoading) {
     return <Loading />
@@ -68,6 +78,12 @@ const Detail = () => {
                   <td>Адрес</td>
                   <td>{data.address}</td>
                 </tr>
+                {data.type ? (
+                  <tr>
+                    <td>Тип ремонта</td>
+                    <td>{data.type}</td>
+                  </tr>
+                ) : null}
                 <tr>
                   <td>Серия квартиры</td>
                   <td>{data.series}</td>
@@ -111,6 +127,22 @@ const Detail = () => {
                 )
               })}
           </Grid>
+          {employeers ? (
+            <Grid item md={6} xs={12}>
+              <table style={{ marginBottom: "10px" }} className="info_table">
+                <tbody>
+                  {employeers.map(item => {
+                    return (
+                      <tr key={item.id}>
+                        <td>{decryptRole(item.role)}</td>
+                        <td>{item.email}</td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </Grid>
+          ) : null}
           <Grid item md={6} xs={12}>
             <Typography
               sx={{ fontSize: "16px", fontWeight: 700, marginBottom: "10px" }}
@@ -139,14 +171,16 @@ const Detail = () => {
                 )
               })}
           </Grid>
-          <Grid item md={6} xs={12}>
-            {(data.status === "new" || data.status === "denied") &&
-            role === Roles.CLIENT ? (
+          {(data.status === "new" || data.status === "denied") &&
+          role === Roles.CLIENT ? (
+            <Grid item md={12} xs={12}>
               <Button color="error" onClick={onDeleteOrder} variant="contained">
                 Удалить
               </Button>
-            ) : null}
-            {role === Roles.PM && data.status === "new" ? (
+            </Grid>
+          ) : null}
+          {role === Roles.PM && data.status === "new" ? (
+            <Grid item md={6} xs={12}>
               <Stack sx={{ marginTop: "10px" }} direction="row" spacing={2}>
                 <Button
                   sx={{ height: "40px" }}
@@ -173,8 +207,59 @@ const Detail = () => {
                   </Button>
                 </Box>
               </Stack>
-            ) : null}
-          </Grid>
+            </Grid>
+          ) : null}
+
+          {role === Roles.PM && data.status === "approved" ? (
+            <Grid item md={6} xs={12}>
+              <FormControl sx={{ width: "100%" }}>
+                <span className="myform__label">
+                  Выберите ответственных за проект(Строители,ДДВ,чертежники)
+                </span>
+                <Select
+                  value={personIds}
+                  onChange={handleChange}
+                  multiple
+                  displayEmpty
+                  MenuProps={{
+                    PaperProps: {
+                      style: {
+                        maxHeight: 48 * 4.5 + 8,
+                        width: 250,
+                      },
+                    },
+                  }}
+                  size="small"
+                >
+                  {users.map((selectObj, index) => (
+                    <MenuItem key={index} value={selectObj.id}>
+                      {selectObj.email} - {decryptRole(selectObj.role)}
+                    </MenuItem>
+                  ))}
+                </Select>
+                <MySelect
+                  showNothing={false}
+                  labelName="Тип ремонта"
+                  value={type}
+                  defaultValue={"Капитальный"}
+                  onBlur={() => {}}
+                  onChange={handleType}
+                  name="order_type"
+                  items={[
+                    { text: "Капитальный", value: "Капитальный" },
+                    { text: "Косметический", value: "Косметический" },
+                  ]}
+                />
+                <Button
+                  onClick={onAppointEmployeers}
+                  sx={{ marginTop: "10px" }}
+                  variant="contained"
+                >
+                  Отправить
+                </Button>
+              </FormControl>
+            </Grid>
+          ) : null}
         </Grid>
       </Paper>
     </div>

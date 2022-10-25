@@ -6,7 +6,9 @@ import Index from "./pages/Index"
 const Route = {
   path: "editProfile",
   element: (
-    <RequiredAuth roles={[Roles.CLIENT]}>
+    <RequiredAuth
+      roles={[Roles.CLIENT, Roles.BUILDER, Roles.DDV, Roles.PM, Roles.MEASURE]}
+    >
       <Outlet />
     </RequiredAuth>
   ),

@@ -65,3 +65,27 @@ export const handleOrder = createAsyncThunk(
         }
     },
 )
+export const getUsers = createAsyncThunk(
+    "getMyOrders/getUsers",
+    async (_, { rejectWithValue }) => {
+        try {
+            const { data } = await api.getUsers()
+            return data
+        } catch (e: any) {
+            toastError(e.response.data.message)
+            return rejectWithValue(e.response.data.message)
+        }
+    },
+)
+export const appoint = createAsyncThunk(
+    "getMyOrders/appoint",
+    async ({ users, order, type }: { users: string[], order: string, type: string }, { rejectWithValue }) => {
+        try {
+            const { data } = await api.appoint(users, order, type)
+            toastSuccess(data.message)
+        } catch (e: any) {
+            toastError(e.response.data.message)
+            return rejectWithValue(e.response.data.message)
+        }
+    },
+)

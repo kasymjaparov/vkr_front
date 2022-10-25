@@ -143,9 +143,12 @@ const CreateOrder = () => {
                     {({ push, remove }) => {
                       return (
                         <div className="rooms_subform">
-                          <Typography sx={{ marginBottom: "10px" }}>
+                          <div
+                            className="myform__label"
+                            style={{ marginBottom: "16px" }}
+                          >
                             Комнаты
-                          </Typography>
+                          </div>
                           {values.rooms.map((_: any, index: number) => (
                             <div style={{ marginBottom: "20px" }} key={index}>
                               <Stack spacing={2}>

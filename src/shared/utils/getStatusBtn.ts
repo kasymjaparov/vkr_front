@@ -19,6 +19,10 @@ export const getStatusBtn = (status: string) => {
             text: "Отказано",
             color: "#f50057",
         },
+        appointed: {
+            text: "Ответственные назначены",
+            color: "#9c27b0",
+        },
     }
     return statuses[status as keyof typeof statuses]
 }

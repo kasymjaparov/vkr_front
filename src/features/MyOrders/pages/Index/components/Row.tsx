@@ -10,18 +10,8 @@ import { NavLink } from "react-router-dom"
 
 interface IRow {
   row: Order
-  role: Roles
 }
-const BannerRow: React.FC<IRow> = ({ row, role }) => {
-  const [user, setUser] = useState({} as IProfile)
-  useEffect(() => {
-    row.users.forEach(item => {
-      if (item.role === Roles.CLIENT) {
-        setUser(item)
-      }
-    })
-  }, [])
-
+const BannerRow: React.FC<IRow> = ({ row }) => {
   return (
     <TableRow
       sx={{
@@ -31,7 +21,6 @@ const BannerRow: React.FC<IRow> = ({ row, role }) => {
       }}
     >
       <TableCell>{row.id}</TableCell>
-      {role !== Roles.CLIENT ? <TableCell>{user.email}</TableCell> : null}
       <TableCell>{row.address}</TableCell>
       <TableCell>{row.amount_room}</TableCell>
       <TableCell>

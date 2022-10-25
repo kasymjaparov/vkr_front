@@ -9,9 +9,6 @@ export function decryptRole(role: Roles) {
         case Roles.DDV:
             result = "ДДВ"
             break;
-        case Roles.DDV:
-            result = "ДДВ"
-            break;
         case Roles.MEASURE:
             result = "Замерщик"
             break;

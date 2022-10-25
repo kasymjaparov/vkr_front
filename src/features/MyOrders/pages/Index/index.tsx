@@ -48,7 +48,7 @@ const LoanIssuedList = () => {
             </TableHead>
             <TableBody>
               {list.map((row, index) => (
-                <Row role={role} key={index} row={row} />
+                <Row key={index} row={row} />
               ))}
             </TableBody>
           </Table>

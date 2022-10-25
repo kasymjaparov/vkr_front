@@ -8,7 +8,7 @@ import { selectMyOrders } from '../../store/selectors'
 const useMyOrders = () => {
     const dispatch = useAppDispatch()
     const { user } = useAppSelector(selectUserProfile)
-    const tableHeaders = user.role === Roles.CLIENT ? ["Id", "Адрес", "Количество комнат", "Статус", "Дата", ""] : ["Id", "Заказчик", "Адрес", "Количество комнат", "Статус", "Дата", ""]
+    const tableHeaders = ["Id", "Адрес", "Количество комнат", "Статус", "Дата", ""]
     const { list, status } = useAppSelector(selectMyOrders)
     const isLoading = status === StatusResponse.LOADING
     const isSuccess = status === StatusResponse.SUCCESS
