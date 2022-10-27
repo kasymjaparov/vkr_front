@@ -19,10 +19,14 @@ export const getStatusBtn = (status: string) => {
             text: "Отказано",
             color: "#f50057",
         },
+        measure_time: {
+            text: "Время замера поставлено",
+            color: "#1de9b6",
+        },
         appointed: {
             text: "Ответственные назначены",
-            color: "#9c27b0",
-        },
+            color: "#26c6da",
+        }
     }
     return statuses[status as keyof typeof statuses]
 }

@@ -6,13 +6,18 @@ import { logout } from "@features/Auth/store/slice"
 import { selectUserProfile } from "@features/Auth/store/selectors"
 import appBarLinks from "./appBarLinks"
 import { useCheckMobileScreen } from "@/shared/hooks"
+import { getNotifications, watchedNotification } from "../../store/actions"
+import { selectNotifications } from "../../store/selectors"
 
 export const useAdminDashboard = () => {
   const isMobile = useCheckMobileScreen()
   const [open, setOpen] = React.useState(isMobile ? false : true)
   const [openTooltip, setOpenTooltip] = React.useState(false) // состояние подсказки
+  const [notification, setNotification] = React.useState(false)
   const [activeLink, setActiveLink] = React.useState<string>("")// состояние активной ссылки
   const { user: getProfileInfo, status: getProfileStatus } = useAppSelector(selectUserProfile)
+  const { list: notifications } = useAppSelector(selectNotifications)
+
   const userRole = getProfileInfo.role
   const token: string | null = window.localStorage.getItem("token")
   const { pathname } = useLocation()
@@ -23,6 +28,7 @@ export const useAdminDashboard = () => {
     let indexOfValidLink = appBarLinks.findIndex((linkObj) => pathname.includes(linkObj.href.slice(0, -2)))
     if (indexOfValidLink < 0) return
     setActiveLink(appBarLinks[indexOfValidLink].href)
+    dispatch(getNotifications())
   }, [])
   const logoutBtn = async () => {
     await dispatch(logout())
@@ -36,8 +42,11 @@ export const useAdminDashboard = () => {
     setActiveLink(link)
     if (isMobile) setOpen(false)
   }
+  const handleWatchNotification = (id: string) => {
+    dispatch(watchedNotification(id))
+  }
   const isValidRole = (validedRoles: Roles[]): boolean => {
     return validedRoles.includes(userRole)
   }
-  return { open, getProfileStatus, token, openEditProfile, isValidRole, activeLink, handleChangeActiveLink, logoutBtn, getProfileInfo, isLoading, openTooltip, setOpen, setOpenTooltip }
+  return { open, getProfileStatus, token, notification, setNotification, openEditProfile, isValidRole, activeLink, handleChangeActiveLink, logoutBtn, getProfileInfo, isLoading, openTooltip, setOpen, setOpenTooltip, handleWatchNotification, notifications }
 }

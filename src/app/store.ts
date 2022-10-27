@@ -1,5 +1,6 @@
 import authSlice from "@/features/Auth/store/slice";
 import createOrderSlice from "@/features/CreateOrder/store/slice";
+import dashboardSlice from "@/features/Dashboard/store/slice";
 import editProfileSlice from "@/features/EditProfile/store/slice";
 import MyOrdersSlice from "@/features/MyOrders/store/slice";
 import { AnyAction, combineReducers, configureStore } from "@reduxjs/toolkit";
@@ -9,7 +10,8 @@ const reducers = {
     auth: authSlice,
     editProfile: editProfileSlice,
     createOrder: createOrderSlice,
-    myOrders: MyOrdersSlice
+    myOrders: MyOrdersSlice,
+    dashboard: dashboardSlice
 }
 
 const combinedReducer = combineReducers(reducers);

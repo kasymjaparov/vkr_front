@@ -1,4 +1,4 @@
-import { FileIcon, Loading, MySelect } from "@/shared/components/ui"
+import { FileIcon, Loading, MyInput, MySelect } from "@/shared/components/ui"
 import useDetail from "./useDetail"
 import {
   Box,
@@ -14,7 +14,7 @@ import {
 import { ImageModal } from "@/shared/components/shared"
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile"
 import { getFormatedDate } from "@/shared/utils"
-import { Roles } from "@/shared/enums"
+import { Roles, StatusResponse } from "@/shared/enums"
 import { decryptRole } from "@/shared/utils/getRole"
 import Select from "@mui/material/Select"
 
@@ -38,6 +38,9 @@ const Detail = () => {
     employeers,
     type,
     handleType,
+    onSendMeasureDate,
+    handleMeasureDate,
+    measureDate,
   } = useDetail()
   if (isLoading) {
     return <Loading />
@@ -258,6 +261,34 @@ const Detail = () => {
                   Отправить
                 </Button>
               </FormControl>
+            </Grid>
+          ) : null}
+          {role === Roles.MEASURE && data.status === "appointed" ? (
+            <Grid item md={6} xs={12}>
+              <FormControl sx={{ width: "100%" }}>
+                <span className="myform__label">
+                  Выберите дату и время замера
+                </span>
+                <OutlinedInput
+                  value={measureDate}
+                  onChange={e => handleMeasureDate(e.target.value)}
+                  type="datetime-local"
+                />
+                <Button
+                  disabled={measureDate.length < 5}
+                  onClick={onSendMeasureDate}
+                  sx={{ marginTop: "10px" }}
+                  variant="contained"
+                >
+                  Отправить
+                </Button>
+              </FormControl>
+            </Grid>
+          ) : null}
+
+          {role === Roles.MEASURE && data.status === "measure_time" ? (
+            <Grid item md={6} xs={12}>
+              measure data inputs
             </Grid>
           ) : null}
         </Grid>
